@@ -1,5 +1,7 @@
 package com.guice.example.service;
 
+import com.guice.example.Factory.CreditCardProcessorFactory;
+import com.guice.example.Factory.TransactionLogFactory;
 import com.guice.example.misc.ChargeResult;
 import com.guice.example.misc.PizzaOrder;
 import com.guice.example.misc.Receipt;
@@ -14,8 +16,8 @@ import com.guice.example.log.TransactionLog;
  */
 public class RealBillingService  implements BillingService {
     public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
-        CreditCardProcessor processor = new PaypalCreditCardProcessor();
-        TransactionLog transactionLog = new DatabaseTransactionLog();
+        CreditCardProcessor processor = CreditCardProcessorFactory.getInstance();
+        TransactionLog transactionLog = TransactionLogFactory.getInstance();
 
         try {
             ChargeResult result = processor.charge(creditCard, order.getAmount());

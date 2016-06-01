@@ -12,4 +12,8 @@ public class TransactionLogFactory {
     public static void setInstance(final TransactionLog instance) {
         TransactionLogFactory.instance = instance;
     }
+
+    public static TransactionLog getInstance() {
+        return instance;
+    }
 }
