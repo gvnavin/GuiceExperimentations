@@ -25,7 +25,7 @@ public class RealBillingService  implements BillingService {
     }
 
     public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
-
+        System.out.println("RealBillingService.chargeOrder");
         try {
             ChargeResult result = processor.charge(creditCard, order.getAmount());
             transactionLog.logChargeResult(result);

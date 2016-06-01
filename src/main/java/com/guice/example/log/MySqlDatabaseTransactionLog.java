@@ -7,10 +7,10 @@ import com.guice.example.misc.ChargeResult;
  */
 public class MySqlDatabaseTransactionLog extends DatabaseTransactionLog {
     public void logChargeResult(final ChargeResult result) {
-
+        System.out.println("MySqlDatabaseTransactionLog.logChargeResult");
     }
 
     public void logConnectException(final Exception e) {
-
+        System.out.println("MySqlDatabaseTransactionLog.logConnectException");
     }
 }

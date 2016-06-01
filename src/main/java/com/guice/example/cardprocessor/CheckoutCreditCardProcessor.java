@@ -1,14 +1,14 @@
 package com.guice.example.cardprocessor;
 
-import com.guice.example.misc.ChargeResult;
 import com.guice.example.card.CreditCard;
+import com.guice.example.misc.ChargeResult;
 
 /**
- * Created by gnavin on 5/31/16.
+ * Created by gnavin on 6/1/16.
  */
-public class PaypalCreditCardProcessor implements CreditCardProcessor {
+public class CheckoutCreditCardProcessor implements CreditCardProcessor {
     public ChargeResult charge(final CreditCard creditCard, final int amount) {
-        System.out.println("PaypalCreditCardProcessor.charge");
+        System.out.println("CheckoutCreditCardProcessor.charge");
         return new ChargeResult();
     }
 }

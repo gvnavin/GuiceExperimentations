@@ -7,10 +7,10 @@ import com.guice.example.misc.ChargeResult;
  */
 public class DatabaseTransactionLog implements TransactionLog {
     public void logChargeResult(final ChargeResult result) {
-
+        System.out.println("DatabaseTransactionLog.logChargeResult");
     }
 
     public void logConnectException(final Exception e) {
-
+        System.out.println("DatabaseTransactionLog.logConnectException");
     }
 }

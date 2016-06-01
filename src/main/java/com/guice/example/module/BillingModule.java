@@ -25,6 +25,9 @@ public class BillingModule extends AbstractModule {
         /**
          * https://github.com/google/guice/wiki/LinkedBindings
          * You can even link the concrete DatabaseTransactionLog class to a subclass:
+         *
+         * Linked bindings can also be chained:
+         * TransactionLog --> DatabaseTransactionLog --> MySqlDatabaseTransactionLog
          */
         bind(DatabaseTransactionLog.class).to(MySqlDatabaseTransactionLog.class);
 

@@ -7,14 +7,15 @@ import com.guice.example.misc.ChargeResult;
  */
 public class InMemoryTransactionLog implements TransactionLog {
     public void logChargeResult(final ChargeResult result) {
-
+        System.out.println("InMemoryTransactionLog.logChargeResult");
     }
 
     public void logConnectException(final Exception e) {
-
+        System.out.println("InMemoryTransactionLog.logConnectException");
     }
 
     public boolean wasSuccessLogged() {
+        System.out.println("InMemoryTransactionLog.wasSuccessLogged");
         return true;
     }
 }
