@@ -7,17 +7,22 @@ import com.guice.example.misc.PizzaOrder;
 import com.guice.example.misc.Receipt;
 import com.guice.example.card.CreditCard;
 import com.guice.example.cardprocessor.CreditCardProcessor;
-import com.guice.example.cardprocessor.PaypalCreditCardProcessor;
-import com.guice.example.log.DatabaseTransactionLog;
 import com.guice.example.log.TransactionLog;
 
 /**
  * Created by gnavin on 5/31/16.
  */
 public class RealBillingService  implements BillingService {
+
+    private final CreditCardProcessor processor;
+    private final TransactionLog transactionLog;
+
+    public RealBillingService(final CreditCardProcessor processor, final TransactionLog transactionLog) {
+        this.processor = processor;
+        this.transactionLog = transactionLog;
+    }
+
     public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
-        CreditCardProcessor processor = CreditCardProcessorFactory.getInstance();
-        TransactionLog transactionLog = TransactionLogFactory.getInstance();
 
         try {
             ChargeResult result = processor.charge(creditCard, order.getAmount());

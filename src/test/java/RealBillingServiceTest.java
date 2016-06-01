@@ -19,17 +19,13 @@ public class RealBillingServiceTest extends TestCase {
     private final FakeCreditCardProcessor processor = new FakeCreditCardProcessor();
 
     @Override public void setUp() {
-        TransactionLogFactory.setInstance(transactionLog);
-        CreditCardProcessorFactory.setInstance(processor);
     }
 
     @Override public void tearDown() {
-        TransactionLogFactory.setInstance(null);
-        CreditCardProcessorFactory.setInstance(null);
     }
 
     public void testSuccessfulCharge() {
-        RealBillingService billingService = new RealBillingService();
+        RealBillingService billingService = new RealBillingService(processor, transactionLog);
         Receipt receipt = billingService.chargeOrder(order, creditCard);
 
         assertTrue(receipt.hasSuccessfulCharge());
