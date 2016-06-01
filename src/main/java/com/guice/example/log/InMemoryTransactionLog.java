@@ -5,7 +5,7 @@ import com.guice.example.misc.ChargeResult;
 /**
  * Created by gnavin on 5/31/16.
  */
-public class InMemoryTransactionLog implements TransactionLog {
+public class InMemoryTransactionLog implements ITransactionLog {
     public void logChargeResult(final ChargeResult result) {
         System.out.println("InMemoryTransactionLog.logChargeResult");
     }

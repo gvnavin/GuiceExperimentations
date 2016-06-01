@@ -1,12 +1,12 @@
 package com.guice.example.module;
 
 import com.google.inject.AbstractModule;
+import com.guice.example.log.ITransactionLog;
 import com.guice.example.log.MySqlDatabaseTransactionLog;
-import com.guice.example.service.BillingService;
+import com.guice.example.service.IBillingService;
 import com.guice.example.cardprocessor.CreditCardProcessor;
 import com.guice.example.cardprocessor.PaypalCreditCardProcessor;
 import com.guice.example.log.DatabaseTransactionLog;
-import com.guice.example.log.TransactionLog;
 import com.guice.example.service.RealBillingService;
 
 /**
@@ -17,17 +17,17 @@ public class BillingModule extends AbstractModule {
     protected void configure() {
 
         /**
-         * This tells Guice that whenever it sees a dependency on a TransactionLog,
+         * This tells Guice that whenever it sees a dependency on a ITransactionLog,
          * it should satisfy the dependency using a DatabaseTransactionLog.
          */
-        bind(TransactionLog.class).to(DatabaseTransactionLog.class);
+        bind(ITransactionLog.class).to(DatabaseTransactionLog.class);
 
         /**
          * https://github.com/google/guice/wiki/LinkedBindings
          * You can even link the concrete DatabaseTransactionLog class to a subclass:
          *
          * Linked bindings can also be chained:
-         * TransactionLog --> DatabaseTransactionLog --> MySqlDatabaseTransactionLog
+         * ITransactionLog --> DatabaseTransactionLog --> MySqlDatabaseTransactionLog
          */
         bind(DatabaseTransactionLog.class).to(MySqlDatabaseTransactionLog.class);
 
@@ -37,7 +37,7 @@ public class BillingModule extends AbstractModule {
          */
         bind(CreditCardProcessor.class).to(PaypalCreditCardProcessor.class);
 
-        bind(BillingService.class).to(RealBillingService.class);
+        bind(IBillingService.class).to(RealBillingService.class);
     }
 }
 

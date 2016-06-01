@@ -5,7 +5,7 @@ import com.google.inject.Injector;
 import com.guice.example.card.CreditCard;
 import com.guice.example.misc.PizzaOrder;
 import com.guice.example.module.BillingModule;
-import com.guice.example.service.BillingService;
+import com.guice.example.service.IBillingService;
 
 /**
  * Created by gnavin on 5/31/16.
@@ -25,7 +25,9 @@ public class Main {
         /**
          * Now that we've got the injector, we can build objects.
          */
-        BillingService billingService = injector.getInstance(BillingService.class);
-        billingService.chargeOrder(order, creditCard);
+        IBillingService IBillingService = injector.getInstance(IBillingService.class);
+        IBillingService.chargeOrder(order, creditCard);
+
+
     }
 }

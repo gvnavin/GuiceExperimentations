@@ -1,19 +1,18 @@
 package com.guice.example.Factory;
 
-import com.guice.example.log.InMemoryTransactionLog;
-import com.guice.example.log.TransactionLog;
+import com.guice.example.log.ITransactionLog;
 
 /**
  * Created by gnavin on 5/31/16.
  */
 public class TransactionLogFactory {
-    private static TransactionLog instance;
+    private static ITransactionLog instance;
 
-    public static void setInstance(final TransactionLog instance) {
+    public static void setInstance(final ITransactionLog instance) {
         TransactionLogFactory.instance = instance;
     }
 
-    public static TransactionLog getInstance() {
+    public static ITransactionLog getInstance() {
         return instance;
     }
 }
