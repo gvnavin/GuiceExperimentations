@@ -4,13 +4,13 @@ package com.guice.example.misc;
  * Created by gnavin on 5/31/16.
  */
 public class PizzaOrder {
-    private Object amount;
+    private int amount;
 
     public PizzaOrder(final int i) {
-
+        amount = i;
     }
 
-    public Object getAmount() {
+    public int getAmount() {
         return amount;
     }
 }

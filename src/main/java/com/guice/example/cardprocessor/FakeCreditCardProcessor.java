@@ -10,7 +10,7 @@ public class FakeCreditCardProcessor implements CreditCardProcessor {
     private CreditCard cardOfOnlyCharge;
     private int amountOfOnlyCharge;
 
-    public ChargeResult charge(final CreditCard creditCard, final Object amount) {
+    public ChargeResult charge(final CreditCard creditCard, final int amount) {
         return new ChargeResult();
     }
 
