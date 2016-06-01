@@ -1,5 +1,6 @@
 package com.guice.example.service;
 
+import com.google.inject.Inject;
 import com.guice.example.Factory.CreditCardProcessorFactory;
 import com.guice.example.Factory.TransactionLogFactory;
 import com.guice.example.misc.ChargeResult;
@@ -17,6 +18,7 @@ public class RealBillingService  implements BillingService {
     private final CreditCardProcessor processor;
     private final TransactionLog transactionLog;
 
+    @Inject
     public RealBillingService(final CreditCardProcessor processor, final TransactionLog transactionLog) {
         this.processor = processor;
         this.transactionLog = transactionLog;

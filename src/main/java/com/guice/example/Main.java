@@ -2,6 +2,8 @@ package com.guice.example;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.guice.example.card.CreditCard;
+import com.guice.example.misc.PizzaOrder;
 import com.guice.example.module.BillingModule;
 import com.guice.example.service.BillingService;
 
@@ -11,6 +13,8 @@ import com.guice.example.service.BillingService;
 public class Main {
     public static void main(String[] args) {
 
+        final PizzaOrder order = new PizzaOrder(100);
+        final CreditCard creditCard = new CreditCard("1234", 11, 2010);
         /**
          * Guice.createInjector() takes your Modules, and returns a new Injector
          * instance. Most applications will call this method exactly once, in their
@@ -22,5 +26,6 @@ public class Main {
          * Now that we've got the injector, we can build objects.
          */
         BillingService billingService = injector.getInstance(BillingService.class);
+        billingService.chargeOrder(order, creditCard);
     }
 }
