@@ -3,9 +3,9 @@ package com.guice.example.log;
 import com.guice.example.misc.ChargeResult;
 
 /**
- * Created by gnavin on 5/31/16.
+ * Created by gnavin on 6/1/16.
  */
-public class DatabaseTransactionLog implements TransactionLog {
+public class MySqlDatabaseTransactionLog extends DatabaseTransactionLog {
     public void logChargeResult(final ChargeResult result) {
 
     }

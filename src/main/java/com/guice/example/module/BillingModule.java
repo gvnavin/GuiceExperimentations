@@ -1,6 +1,7 @@
 package com.guice.example.module;
 
 import com.google.inject.AbstractModule;
+import com.guice.example.log.MySqlDatabaseTransactionLog;
 import com.guice.example.service.BillingService;
 import com.guice.example.cardprocessor.CreditCardProcessor;
 import com.guice.example.cardprocessor.PaypalCreditCardProcessor;
@@ -20,6 +21,12 @@ public class BillingModule extends AbstractModule {
          * it should satisfy the dependency using a DatabaseTransactionLog.
          */
         bind(TransactionLog.class).to(DatabaseTransactionLog.class);
+
+        /**
+         * https://github.com/google/guice/wiki/LinkedBindings
+         * You can even link the concrete DatabaseTransactionLog class to a subclass:
+         */
+        bind(DatabaseTransactionLog.class).to(MySqlDatabaseTransactionLog.class);
 
         /**
          * Similarly, this binding tells Guice that when CreditCardProcessor is used in
