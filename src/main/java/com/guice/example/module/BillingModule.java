@@ -1,8 +1,11 @@
 package com.guice.example.module;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
+import com.guice.example.bindingannotation.PayPal;
+import com.guice.example.cardprocessor.CheckoutCreditCardProcessor;
 import com.guice.example.cardprocessor.CreditCardProcessor;
-import com.guice.example.cardprocessor.PaypalCreditCardProcessor;
+import com.guice.example.cardprocessor.PayPalCreditCardProcessor;
 import com.guice.example.log.DatabaseTransactionLog;
 import com.guice.example.log.ITransactionLog;
 import com.guice.example.log.MySqlDatabaseTransactionLog;
@@ -33,13 +36,17 @@ public class BillingModule extends AbstractModule {
 
         /**
          * Similarly, this binding tells Guice that when CreditCardProcessor is used in
-         * a dependency, that should be satisfied with a PaypalCreditCardProcessor.
+         * a dependency, that should be satisfied with a PayPalCreditCardProcessor.
          */
-        bind(CreditCardProcessor.class).to(PaypalCreditCardProcessor.class);
+        bind(CreditCardProcessor.class).to(PayPalCreditCardProcessor.class);
 
         //bind(IBillingService.class).to(RealBillingService.class);
         //bind(IBillingService.class).to(AnnotatedBillingService.class);
         bind(IBillingService.class).to(NamedBillingService.class);
+
+        bind(CreditCardProcessor.class).annotatedWith(PayPal.class).to(PayPalCreditCardProcessor.class);
+
+        bind(CreditCardProcessor.class).annotatedWith(Names.named("Checkout")).to(CheckoutCreditCardProcessor.class);
     }
 }
 

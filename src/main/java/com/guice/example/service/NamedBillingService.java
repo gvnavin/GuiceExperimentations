@@ -1,6 +1,7 @@
 package com.guice.example.service;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import com.guice.example.card.CreditCard;
 import com.guice.example.cardprocessor.CreditCardProcessor;
 import com.guice.example.log.ITransactionLog;
@@ -14,8 +15,9 @@ public class NamedBillingService implements IBillingService {
     private final CreditCardProcessor processor;
     private final ITransactionLog transactionLog;
 
+    //annotated with CreditCardProcessor with @Named("name")
     @Inject
-    public NamedBillingService(final CreditCardProcessor processor, final ITransactionLog transactionLog) {
+    public NamedBillingService(@Named("Checkout") final CreditCardProcessor processor, final ITransactionLog transactionLog) {
         this.processor = processor;
         this.transactionLog = transactionLog;
     }
