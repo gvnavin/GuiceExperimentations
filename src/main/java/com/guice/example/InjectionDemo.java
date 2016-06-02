@@ -3,6 +3,8 @@ package com.guice.example;
 import com.google.inject.Inject;
 import com.guice.example.bindingannotation.RemoteServerLog;
 import com.guice.example.card.CreditCard;
+import com.guice.example.factorymodulebuilder.Payment;
+import com.guice.example.factorymodulebuilder.PaymentFactory;
 import com.guice.example.log.ITransactionLog;
 import com.guice.example.log.MySqlDatabaseTransactionLog;
 import com.guice.example.log.NoSqlDatabaseTransactionLog;
@@ -47,6 +49,9 @@ public class InjectionDemo {
     @Inject
     private NoSqlDatabaseTransactionLog noSqlDatabaseTransactionLog;
 
+    @Inject
+    private PaymentFactory paymentFactory;
+
     public void print() {
         System.out.println("InjectionDemo.print");
 
@@ -77,6 +82,11 @@ public class InjectionDemo {
         System.out.println("noSqlDatabaseTransactionLog = " + noSqlDatabaseTransactionLog);
         noSqlDatabaseTransactionLog.print();
         System.out.println();
+
+        for (int i = 0; i < 5; i++) {
+            final Payment payment = paymentFactory.create(i, i*300);
+            System.out.println("payment = " + payment);
+        }
     }
 
 }

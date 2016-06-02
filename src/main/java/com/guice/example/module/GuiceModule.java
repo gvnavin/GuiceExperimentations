@@ -2,6 +2,7 @@ package com.guice.example.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 import com.guice.example.bindingannotation.PayPal;
@@ -9,6 +10,9 @@ import com.guice.example.bindingannotation.RemoteServerLog;
 import com.guice.example.cardprocessor.CheckoutCreditCardProcessor;
 import com.guice.example.cardprocessor.ICreditCardProcessor;
 import com.guice.example.cardprocessor.PayPalCreditCardProcessor;
+import com.guice.example.factorymodulebuilder.Payment;
+import com.guice.example.factorymodulebuilder.PaymentFactory;
+import com.guice.example.factorymodulebuilder.RealPayment;
 import com.guice.example.log.DatabaseTransactionLog;
 import com.guice.example.log.ITransactionLog;
 import com.guice.example.log.MySqlDatabaseTransactionLog;
@@ -28,6 +32,7 @@ public class GuiceModule extends AbstractModule {
         bindWithAnnotation();
         bindInstance();
         bindProvider();
+        bindFactoryModule();
     }
 
     private void bindInterfaceWithImpl() {
@@ -75,6 +80,11 @@ public class GuiceModule extends AbstractModule {
         bind(NoSqlDatabaseTransactionLog.class).toProvider(NoSqlDatabaseTransactionLogProvider.class);
     }
 
+    private void bindFactoryModule() {
+        install(new FactoryModuleBuilder()
+                .implement(Payment.class, RealPayment.class)
+                .build(PaymentFactory.class));
+    }
     /**
      * simple provides method
      * When you need code to create an object, use an @Provides method.

@@ -1,4 +1,4 @@
-package com.guice.example.Factory;
+package com.guice.example.factory;
 
 import com.guice.example.cardprocessor.ICreditCardProcessor;
 import com.guice.example.cardprocessor.SquareCreditCardProcessor;

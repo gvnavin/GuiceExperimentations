@@ -3,11 +3,7 @@ package com.guice.example.module;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
-import com.guice.example.log.DatabaseTransactionLog;
-import com.guice.example.log.ITransactionLog;
 import com.guice.example.log.NoSqlDatabaseTransactionLog;
-
-import java.sql.Connection;
 
 /**
  * Created by gnavin on 6/1/16.

@@ -1,4 +1,4 @@
-package com.guice.example.Factory;
+package com.guice.example.factory;
 
 import com.guice.example.log.ITransactionLog;
 
