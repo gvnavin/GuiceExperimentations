@@ -1,13 +1,13 @@
 package com.guice.example.module;
 
 import com.google.inject.AbstractModule;
-import com.guice.example.log.ITransactionLog;
-import com.guice.example.log.MySqlDatabaseTransactionLog;
-import com.guice.example.service.IBillingService;
 import com.guice.example.cardprocessor.CreditCardProcessor;
 import com.guice.example.cardprocessor.PaypalCreditCardProcessor;
 import com.guice.example.log.DatabaseTransactionLog;
-import com.guice.example.service.RealBillingService;
+import com.guice.example.log.ITransactionLog;
+import com.guice.example.log.MySqlDatabaseTransactionLog;
+import com.guice.example.service.IBillingService;
+import com.guice.example.service.NamedBillingService;
 
 /**
  * Created by gnavin on 5/31/16.
@@ -37,7 +37,9 @@ public class BillingModule extends AbstractModule {
          */
         bind(CreditCardProcessor.class).to(PaypalCreditCardProcessor.class);
 
-        bind(IBillingService.class).to(RealBillingService.class);
+        //bind(IBillingService.class).to(RealBillingService.class);
+        //bind(IBillingService.class).to(AnnotatedBillingService.class);
+        bind(IBillingService.class).to(NamedBillingService.class);
     }
 }
 

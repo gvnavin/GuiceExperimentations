@@ -13,8 +13,6 @@ import com.guice.example.service.IBillingService;
 public class Main {
     public static void main(String[] args) {
 
-        final PizzaOrder order = new PizzaOrder(100);
-        final CreditCard creditCard = new CreditCard("1234", 11, 2010);
         /**
          * Guice.createInjector() takes your Modules, and returns a new Injector
          * instance. Most applications will call this method exactly once, in their
@@ -25,9 +23,8 @@ public class Main {
         /**
          * Now that we've got the injector, we can build objects.
          */
-        IBillingService IBillingService = injector.getInstance(IBillingService.class);
-        IBillingService.chargeOrder(order, creditCard);
-
+        final InjectionDemo injectionDemo = injector.getInstance(InjectionDemo.class);
+        injectionDemo.print();
 
     }
 }
