@@ -11,7 +11,7 @@ public class FakeCreditCardProcessor implements ICreditCardProcessor {
     private int amountOfOnlyCharge;
 
     public ChargeResult charge(final CreditCard creditCard, final int amount) {
-        System.out.println("FakeCreditCardProcessor.charge");
+        System.out.println("FakeCreditCardProcessor.charge this : " + this);
         return new ChargeResult();
     }
 

@@ -2,11 +2,8 @@ package com.guice.example;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.guice.example.card.CreditCard;
 import com.guice.example.instancebinding.InstanceBindingDemo;
-import com.guice.example.misc.PizzaOrder;
-import com.guice.example.module.BillingModule;
-import com.guice.example.service.IBillingService;
+import com.guice.example.module.GuiceModule;
 
 /**
  * Created by gnavin on 5/31/16.
@@ -19,7 +16,7 @@ public class Main {
          * instance. Most applications will call this method exactly once, in their
          * main() method.
          */
-        final Injector injector = Guice.createInjector(new BillingModule());
+        final Injector injector = Guice.createInjector(new GuiceModule());
 
         /**
          * Now that we've got the injector, we can build objects.

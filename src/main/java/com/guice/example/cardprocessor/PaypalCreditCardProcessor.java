@@ -8,7 +8,7 @@ import com.guice.example.card.CreditCard;
  */
 public class PayPalCreditCardProcessor implements ICreditCardProcessor {
     public ChargeResult charge(final CreditCard creditCard, final int amount) {
-        System.out.println("PayPalCreditCardProcessor.charge");
+        System.out.println("PayPalCreditCardProcessor.charge this : " + this);
         return new ChargeResult();
     }
 }

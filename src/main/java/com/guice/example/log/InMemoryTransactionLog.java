@@ -14,6 +14,11 @@ public class InMemoryTransactionLog implements ITransactionLog {
         System.out.println("InMemoryTransactionLog.logConnectException");
     }
 
+    @Override
+    public void print() {
+        System.out.println("InMemoryTransactionLog.print this : " + this);
+    }
+
     public boolean wasSuccessLogged() {
         System.out.println("InMemoryTransactionLog.wasSuccessLogged");
         return true;

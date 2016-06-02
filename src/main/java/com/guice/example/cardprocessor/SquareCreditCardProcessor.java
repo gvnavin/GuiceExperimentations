@@ -8,7 +8,7 @@ import com.guice.example.card.CreditCard;
  */
 public class SquareCreditCardProcessor implements ICreditCardProcessor {
     public ChargeResult charge(final CreditCard creditCard, final int amount) {
-        System.out.println("SquareCreditCardProcessor.charge");
+        System.out.println("SquareCreditCardProcessor.charge this : " + this);
         return new ChargeResult();
     }
 }

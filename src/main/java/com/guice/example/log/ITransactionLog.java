@@ -9,4 +9,6 @@ public interface ITransactionLog {
     public void logChargeResult(ChargeResult result);
 
     public void logConnectException(Exception e);
+
+    public void print();
 }

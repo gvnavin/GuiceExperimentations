@@ -13,4 +13,8 @@ public class MySqlDatabaseTransactionLog extends DatabaseTransactionLog {
     public void logConnectException(final Exception e) {
         System.out.println("MySqlDatabaseTransactionLog.logConnectException");
     }
+
+    protected void printClassName() {
+        System.out.println("MySqlDatabaseTransactionLog.print this : " + this);
+    }
 }
