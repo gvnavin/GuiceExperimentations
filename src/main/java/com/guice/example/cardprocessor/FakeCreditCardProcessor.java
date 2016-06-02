@@ -6,7 +6,7 @@ import com.guice.example.card.CreditCard;
 /**
  * Created by gnavin on 5/31/16.
  */
-public class FakeCreditCardProcessor implements CreditCardProcessor {
+public class FakeCreditCardProcessor implements ICreditCardProcessor {
     private CreditCard cardOfOnlyCharge;
     private int amountOfOnlyCharge;
 

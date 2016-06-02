@@ -1,6 +1,6 @@
 package com.guice.example.service;
 
-import com.guice.example.cardprocessor.CreditCardProcessor;
+import com.guice.example.cardprocessor.ICreditCardProcessor;
 import com.guice.example.log.ITransactionLog;
 import com.guice.example.misc.ChargeResult;
 import com.guice.example.misc.PizzaOrder;
@@ -21,7 +21,7 @@ public interface IBillingService {
      */
     public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard);
 
-    default Receipt charge(CreditCardProcessor processor, CreditCard creditCard, PizzaOrder order, ITransactionLog transactionLog) {
+    default Receipt charge(ICreditCardProcessor processor, CreditCard creditCard, PizzaOrder order, ITransactionLog transactionLog) {
         try {
             ChargeResult result = processor.charge(creditCard, order.getAmount());
             transactionLog.logChargeResult(result);
