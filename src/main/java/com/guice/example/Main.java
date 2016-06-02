@@ -3,6 +3,7 @@ package com.guice.example;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.guice.example.card.CreditCard;
+import com.guice.example.instancebinding.InstanceBindingDemo;
 import com.guice.example.misc.PizzaOrder;
 import com.guice.example.module.BillingModule;
 import com.guice.example.service.IBillingService;
@@ -18,7 +19,7 @@ public class Main {
          * instance. Most applications will call this method exactly once, in their
          * main() method.
          */
-        Injector injector = Guice.createInjector(new BillingModule());
+        final Injector injector = Guice.createInjector(new BillingModule());
 
         /**
          * Now that we've got the injector, we can build objects.
@@ -26,5 +27,12 @@ public class Main {
         final InjectionDemo injectionDemo = injector.getInstance(InjectionDemo.class);
         injectionDemo.print();
 
+        testInstanceBinding(injector);
+    }
+
+    public static void testInstanceBinding(final Injector injector) {
+        final InstanceBindingDemo instanceBindingDemo = injector.getInstance(InstanceBindingDemo.class);
+        System.out.println("instanceBindingDemo.getJdbcUrl() : " + instanceBindingDemo.getJdbcUrl());
+        System.out.println("instanceBindingDemo.getTimeOut() : " + instanceBindingDemo.getTimeOut());
     }
 }

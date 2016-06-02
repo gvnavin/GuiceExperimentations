@@ -19,6 +19,7 @@ public class InjectionDemo {
     @Inject
     private IBillingService billingService;
 
+    //injecting concrete class directly doesn't dinding inside Module.Configure()
     @Inject
     private RealBillingService realBillingService;
 

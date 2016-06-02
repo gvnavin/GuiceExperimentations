@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import com.guice.example.bindingannotation.PayPal;
 import com.guice.example.cardprocessor.CheckoutCreditCardProcessor;
-import com.guice.example.cardprocessor.CreditCardProcessor;
+import com.guice.example.cardprocessor.ICreditCardProcessor;
 import com.guice.example.cardprocessor.PayPalCreditCardProcessor;
 import com.guice.example.log.DatabaseTransactionLog;
 import com.guice.example.log.ITransactionLog;
@@ -19,12 +19,27 @@ public class BillingModule extends AbstractModule {
     @Override
     protected void configure() {
 
-        /**
-         * This tells Guice that whenever it sees a dependency on a ITransactionLog,
-         * it should satisfy the dependency using a DatabaseTransactionLog.
-         */
-        bind(ITransactionLog.class).to(DatabaseTransactionLog.class);
+        bindInterfaceWithImpl();
+        chainBinding();
+        bindWithAnnotation();
+        bindInstance();
 
+    }
+
+    private void bindInterfaceWithImpl() {
+        /**
+         * Similarly, this binding tells Guice that when ICreditCardProcessor is used in
+         * a dependency, that should be satisfied with a PayPalCreditCardProcessor.
+         */
+        bind(ICreditCardProcessor.class).to(PayPalCreditCardProcessor.class);
+
+        //bind(IBillingService.class).to(RealBillingService.class);
+        //bind(IBillingService.class).to(AnnotatedBillingService.class);
+        bind(IBillingService.class).to(NamedBillingService.class);
+
+    }
+
+    private void chainBinding() {
         /**
          * https://github.com/google/guice/wiki/LinkedBindings
          * You can even link the concrete DatabaseTransactionLog class to a subclass:
@@ -32,21 +47,24 @@ public class BillingModule extends AbstractModule {
          * Linked bindings can also be chained:
          * ITransactionLog --> DatabaseTransactionLog --> MySqlDatabaseTransactionLog
          */
+        bind(ITransactionLog.class).to(DatabaseTransactionLog.class);
         bind(DatabaseTransactionLog.class).to(MySqlDatabaseTransactionLog.class);
+    }
 
-        /**
-         * Similarly, this binding tells Guice that when CreditCardProcessor is used in
-         * a dependency, that should be satisfied with a PayPalCreditCardProcessor.
-         */
-        bind(CreditCardProcessor.class).to(PayPalCreditCardProcessor.class);
+    private void bindWithAnnotation() {
 
-        //bind(IBillingService.class).to(RealBillingService.class);
-        //bind(IBillingService.class).to(AnnotatedBillingService.class);
-        bind(IBillingService.class).to(NamedBillingService.class);
+        bind(ICreditCardProcessor.class).annotatedWith(PayPal.class).to(PayPalCreditCardProcessor.class);
 
-        bind(CreditCardProcessor.class).annotatedWith(PayPal.class).to(PayPalCreditCardProcessor.class);
+        bind(ICreditCardProcessor.class).annotatedWith(Names.named("Checkout")).to(CheckoutCreditCardProcessor.class);
+    }
 
-        bind(CreditCardProcessor.class).annotatedWith(Names.named("Checkout")).to(CheckoutCreditCardProcessor.class);
+    private void bindInstance() {
+        bind(String.class)
+                .annotatedWith(Names.named("JDBC.URL"))
+                .toInstance("jdbc:mysql://localhost/pizza");
+        bind(Integer.class)
+                .annotatedWith(Names.named("login.timeout.seconds"))
+                .toInstance(10);
     }
 }
 
