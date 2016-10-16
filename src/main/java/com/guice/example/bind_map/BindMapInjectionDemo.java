@@ -17,6 +17,7 @@ public class BindMapInjectionDemo {
     
     public void print() {
     
+        System.out.println("snacks = " + snacks);
         for (Map.Entry<String, Snack> stringSnackEntry : snacks.entrySet()) {
             System.out.println("stringSnackEntry.getKey() = " + stringSnackEntry.getKey());
             System.out.println("stringSnackEntry.getValue() = " + stringSnackEntry.getValue());
@@ -24,7 +25,8 @@ public class BindMapInjectionDemo {
         }
         
         System.out.println("------------------------------------------------------------------------");
-        
+    
+        System.out.println("snackProviders = " + snackProviders);
         for (Map.Entry<String, Provider<Snack>> stringProviderEntry : snackProviders.entrySet()) {
             System.out.println("stringProviderEntry.getKey() = " + stringProviderEntry.getKey());
             System.out.println("stringProviderEntry.getValue().get() = " + stringProviderEntry.getValue().get());

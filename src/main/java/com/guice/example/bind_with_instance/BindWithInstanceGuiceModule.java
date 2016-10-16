@@ -13,7 +13,7 @@ public class BindWithInstanceGuiceModule extends AbstractModule {
     }
 
     private void bindInstance() {
-        bind(String.class).annotatedWith(Names.named("JDBC.URL")).toInstance("jdbc:mysql://localhost/pizza");
+        bind(String.class).annotatedWith(Names.named("JDBC.URL")).toInstance("jdbc:mysql://localhost/test");
         bind(Integer.class).annotatedWith(Names.named("login.timeout.seconds")).toInstance(10);
     }
    

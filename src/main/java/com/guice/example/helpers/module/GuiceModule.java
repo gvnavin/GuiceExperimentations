@@ -1,4 +1,4 @@
-package com.guice.example.module;
+package com.guice.example.helpers.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -91,7 +91,7 @@ public class GuiceModule extends AbstractModule {
          * https://github.com/google/guice/wiki/ProvidesMethods#throwing-exceptions
          */
         MySqlDatabaseTransactionLog transactionLog = new MySqlDatabaseTransactionLog();
-        transactionLog.setJdbcUrl("jdbc:mysql://localhost/pizza");
+        transactionLog.setJdbcUrl("jdbc:mysql://localhost/test");
         transactionLog.setThreadPoolSize(30);
         return transactionLog;
     }

@@ -16,7 +16,7 @@ public class NoSqlDatabaseTransactionLogProvider implements Provider<NoSqlDataba
          * https://github.com/google/guice/wiki/ProvidesMethods#throwing-exceptions
          */
         NoSqlDatabaseTransactionLog transactionLog = new NoSqlDatabaseTransactionLog();
-        transactionLog.setJdbcUrl("jdbc:mysql://localhost/pizza");
+        transactionLog.setJdbcUrl("jdbc:mysql://localhost/test");
         transactionLog.setThreadPoolSize(10);
         return transactionLog;
     }

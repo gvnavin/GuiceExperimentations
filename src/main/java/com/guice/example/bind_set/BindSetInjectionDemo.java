@@ -19,6 +19,7 @@ public class BindSetInjectionDemo {
     
     public void print() {
     
+        System.out.println("snacks = " + snacks);
         for (Snack snack : snacks) {
             System.out.println("snack = " + snack);
             System.out.println("snack = " + snack);
@@ -26,6 +27,7 @@ public class BindSetInjectionDemo {
         
         System.out.println("------------------------------------------------------------------------");
     
+        System.out.println("snackProviders = " + snackProviders);
         for (Provider<Snack> snackProvider : snackProviders) {
             System.out.println("snackProvider.get() = " + snackProvider.get());
             System.out.println("snackProvider.get() = " + snackProvider.get());

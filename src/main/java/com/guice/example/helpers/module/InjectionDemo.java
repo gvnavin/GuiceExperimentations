@@ -1,4 +1,4 @@
-package com.guice.example.module;
+package com.guice.example.helpers.module;
 
 import com.google.inject.Inject;
 import com.guice.example.bind_with_annotation.SqlDatabaseTransactionLog;

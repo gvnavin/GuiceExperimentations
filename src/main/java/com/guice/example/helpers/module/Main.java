@@ -1,4 +1,4 @@
-package com.guice.example.module;
+package com.guice.example.helpers.module;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
