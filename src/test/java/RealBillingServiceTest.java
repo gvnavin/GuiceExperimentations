@@ -1,9 +1,9 @@
-import com.guice.example.misc.PizzaOrder;
-import com.guice.example.misc.Receipt;
-import com.guice.example.card.CreditCard;
-import com.guice.example.cardprocessor.FakeCreditCardProcessor;
-import com.guice.example.log.InMemoryTransactionLog;
-import com.guice.example.service.RealBillingService;
+import com.guice.example.helpers.misc.PizzaOrder;
+import com.guice.example.helpers.misc.Receipt;
+import com.guice.example.helpers.card.CreditCard;
+import com.guice.example.helpers.cardprocessor.FakeCreditCardProcessor;
+import com.guice.example.helpers.log.InMemoryTransactionLog;
+import com.guice.example.helpers.service.RealBillingService;
 import junit.framework.TestCase;
 
 /**

@@ -5,21 +5,20 @@ import com.google.inject.Provides;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
-import com.guice.example.bindingannotation.PayPal;
-import com.guice.example.bindingannotation.RemoteServerLog;
-import com.guice.example.cardprocessor.CheckoutCreditCardProcessor;
-import com.guice.example.cardprocessor.ICreditCardProcessor;
-import com.guice.example.cardprocessor.PayPalCreditCardProcessor;
-import com.guice.example.factorymodulebuilder.Payment;
-import com.guice.example.factorymodulebuilder.PaymentFactory;
-import com.guice.example.factorymodulebuilder.RealPayment;
-import com.guice.example.log.DatabaseTransactionLog;
-import com.guice.example.log.ITransactionLog;
-import com.guice.example.log.MySqlDatabaseTransactionLog;
-import com.guice.example.log.NoSqlDatabaseTransactionLog;
-import com.guice.example.service.IBillingService;
-import com.guice.example.service.NamedBillingService;
-import com.guice.example.service.RealBillingService;
+import com.guice.example.bind_with_annotation.PayPal;
+import com.guice.example.bind_with_annotation.SqlDatabaseTransactionLog;
+import com.guice.example.helpers.cardprocessor.CheckoutCreditCardProcessor;
+import com.guice.example.helpers.cardprocessor.ICreditCardProcessor;
+import com.guice.example.helpers.cardprocessor.PayPalCreditCardProcessor;
+import com.guice.example.helpers.factorymodulebuilder.Payment;
+import com.guice.example.helpers.factorymodulebuilder.PaymentFactory;
+import com.guice.example.helpers.factorymodulebuilder.RealPayment;
+import com.guice.example.helpers.log.DatabaseTransactionLog;
+import com.guice.example.helpers.log.ITransactionLog;
+import com.guice.example.helpers.log.MySqlDatabaseTransactionLog;
+import com.guice.example.helpers.log.NoSqlDatabaseTransactionLog;
+import com.guice.example.helpers.service.IBillingService;
+import com.guice.example.helpers.service.RealBillingService;
 
 /**
  * Created by gnavin on 5/31/16.
@@ -30,7 +29,7 @@ public class GuiceModule extends AbstractModule {
         bindInterfaceWithImpl();
         chainBinding();
         bindWithAnnotation();
-        bindInstance();
+        
         bindProvider();
         bindFactoryModule();
     }
@@ -68,18 +67,13 @@ public class GuiceModule extends AbstractModule {
         bind(ICreditCardProcessor.class).annotatedWith(Names.named("Checkout")).to(CheckoutCreditCardProcessor.class);
     }
 
-    private void bindInstance() {
-        bind(String.class).annotatedWith(Names.named("JDBC.URL")).toInstance("jdbc:mysql://localhost/pizza");
-        bind(String.class).annotatedWith(Names.named("JDBC.Server.URL")).toInstance("jdbc:mysql://remote/pizza");
-        bind(String.class).annotatedWith(Names.named("Server.URL")).toInstance("https://www.remote.com/pizza");
-        bind(Integer.class).annotatedWith(Names.named("login.timeout.seconds")).toInstance(10);
-        bind(Integer.class).annotatedWith(Names.named("threadpool.size")).toInstance(5);
-    }
-
     private void bindProvider() {
         bind(NoSqlDatabaseTransactionLog.class).toProvider(NoSqlDatabaseTransactionLogProvider.class);
     }
-
+    
+    /**
+     * creates factory implementation
+     */
     private void bindFactoryModule() {
         install(new FactoryModuleBuilder()
                 .implement(Payment.class, RealPayment.class)
@@ -103,14 +97,14 @@ public class GuiceModule extends AbstractModule {
     }
 
     /**
-     * provides method with annotation
+     * provides method with annotation "@SqlDatabaseTransactionLog"
      * injected method parameters using named annotations
      * @param jdbcUrl
      * @param threadPoolSize
      * @return
      */
     @Provides
-    @RemoteServerLog
+    @SqlDatabaseTransactionLog
     MySqlDatabaseTransactionLog provideNamedTransactionLog(@Named("JDBC.Server.URL") final String jdbcUrl,
                                                            @Named("threadpool.size") final int threadPoolSize) {
         /**

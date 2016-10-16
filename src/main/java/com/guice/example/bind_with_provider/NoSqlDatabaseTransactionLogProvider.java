@@ -1,23 +1,14 @@
-package com.guice.example.module;
+package com.guice.example.bind_with_provider;
 
-import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.google.inject.name.Named;
 import com.guice.example.helpers.log.NoSqlDatabaseTransactionLog;
 
 /**
  * Created by gnavin on 6/1/16.
  */
-public class NoSqlDatabaseTransactionLogProvider implements Provider<NoSqlDatabaseTransactionLog> {
-    private String jdbcUrl;
-    private int threadPoolSize;
 
-    @Inject
-    public NoSqlDatabaseTransactionLogProvider(@Named("Server.URL") final String jdbcUrl,
-                                               @Named("threadpool.size") final int threadPoolSize) {
-        this.jdbcUrl = jdbcUrl;
-        this.threadPoolSize = threadPoolSize;
-    }
+//lazy value provision, create many new objects
+public class NoSqlDatabaseTransactionLogProvider implements Provider<NoSqlDatabaseTransactionLog> {
 
     public NoSqlDatabaseTransactionLog get() {
         /**
@@ -25,8 +16,8 @@ public class NoSqlDatabaseTransactionLogProvider implements Provider<NoSqlDataba
          * https://github.com/google/guice/wiki/ProvidesMethods#throwing-exceptions
          */
         NoSqlDatabaseTransactionLog transactionLog = new NoSqlDatabaseTransactionLog();
-        transactionLog.setJdbcUrl(jdbcUrl);
-        transactionLog.setThreadPoolSize(threadPoolSize);
+        transactionLog.setJdbcUrl("jdbc:mysql://localhost/pizza");
+        transactionLog.setThreadPoolSize(10);
         return transactionLog;
     }
 }
