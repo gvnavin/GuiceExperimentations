@@ -2,9 +2,9 @@ package com.guice.example.bind_factory_builder;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
-import com.guice.example.helpers.factorymodulebuilder.Payment;
-import com.guice.example.helpers.factorymodulebuilder.PaymentFactory;
-import com.guice.example.helpers.factorymodulebuilder.RealPayment;
+import com.guice.example.factorymodulebuilder.Payment;
+import com.guice.example.factorymodulebuilder.PaymentFactory;
+import com.guice.example.factorymodulebuilder.RealPayment;
 
 /**
  * Created by gnavin on 5/31/16.

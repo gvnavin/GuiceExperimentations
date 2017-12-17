@@ -1,4 +1,4 @@
-package com.guice.example.helpers.factorymodulebuilder;
+package com.guice.example.factorymodulebuilder;
 
 /**
  * Created by gnavin on 6/2/16.

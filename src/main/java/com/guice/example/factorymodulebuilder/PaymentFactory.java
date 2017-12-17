@@ -1,4 +1,4 @@
-package com.guice.example.helpers.factorymodulebuilder;
+package com.guice.example.factorymodulebuilder;
 
 import com.google.inject.assistedinject.Assisted;
 

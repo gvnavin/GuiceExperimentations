@@ -1,18 +1,8 @@
 package com.guice.example.bind_factory_builder;
 
 import com.google.inject.Inject;
-import com.guice.example.bind_with_annotation.SqlDatabaseTransactionLog;
-import com.guice.example.helpers.card.CreditCard;
-import com.guice.example.helpers.factorymodulebuilder.Payment;
-import com.guice.example.helpers.factorymodulebuilder.PaymentFactory;
-import com.guice.example.helpers.log.ITransactionLog;
-import com.guice.example.helpers.log.MySqlDatabaseTransactionLog;
-import com.guice.example.helpers.log.NoSqlDatabaseTransactionLog;
-import com.guice.example.helpers.misc.PizzaOrder;
-import com.guice.example.helpers.service.AnnotatedBillingService;
-import com.guice.example.helpers.service.IBillingService;
-import com.guice.example.helpers.service.NamedBillingService;
-import com.guice.example.helpers.service.RealBillingService;
+import com.guice.example.factorymodulebuilder.Payment;
+import com.guice.example.factorymodulebuilder.PaymentFactory;
 import lombok.RequiredArgsConstructor;
 
 /**
